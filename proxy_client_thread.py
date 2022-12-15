@@ -81,7 +81,6 @@ class ProxyClientThread(threading.Thread):
                 if not data:
                     break
         elif self.method == 'POST':
-            print("here")
             while True:
                 data = self.client_socket.recv(1024)
                 print(data)

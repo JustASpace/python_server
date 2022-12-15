@@ -10,6 +10,7 @@ from client_thread import ClientThread
 dir_path = pathlib.Path.cwd()
 IP = "127.0.0.1"
 
+
 class RawFileMock:
     def __init__(self, lines: list):
         self.count = -1
@@ -47,8 +48,6 @@ class SocketMock:
         if self.counter >= len(self.file_splited):
             return b''
         return self.file_splited[self.counter]
-
-
 
     def get_file(self, bytes_to_read: int):
         path = pathlib.Path(dir_path, "test_client", "send_to_server.txt")

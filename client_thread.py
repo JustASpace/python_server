@@ -90,9 +90,9 @@ class ClientThread(threading.Thread):
                 self.send_ok_response(Response(200, 'OK'))
                 f = open(path, 'wb')
                 while True:
-                    l = self.client_socket.recv(1024)
-                    f.write(l)
-                    if not l:
+                    current_bytes = self.client_socket.recv(1024)
+                    f.write(current_bytes)
+                    if not current_bytes:
                         break
                 f.close()
                 self.client_socket.close()
@@ -114,11 +114,9 @@ class ClientThread(threading.Thread):
     def read_bytes_from_file(self, path):
         file_to_bytes = b''
         f = open(path, "rb")
-        l = f.read(1024)
-        while l:
-            file_to_bytes += l
-            l = f.read(1024)
+        current_bytes = f.read(1024)
+        while current_bytes:
+            file_to_bytes += current_bytes
+            current_bytes = f.read(1024)
         f.close()
         return file_to_bytes
-
-
